@@ -97025,7 +97025,10 @@ function getMetadata(_a) {
             })), additionalProperties);
         }
         catch (error) {
-            throw new Error(`Error getting metadata for ${url}: ${error.result.error}`);
+            (0,core.warning)(`Error getting metadata for ${url}: ${error.result.error}`);
+            // throw new Error(`Error getting metadata for ${url}: ${error.result.error}`);
+            return Object.assign(Object.assign(Object.assign({ title: "", site: "", author: "", date,
+                timestamp, description: "", url: url, image: "", type: "" }, (notes && { notes })), (tags && { tags: toArray(tags) })), additionalProperties);
         }
     });
 }
