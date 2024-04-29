@@ -48,7 +48,22 @@ export async function getMetadata({
       ...additionalProperties,
     };
   } catch (error) {
-    throw new Error(`Error getting metadata for ${url}: ${error.result.error}`);
+    warning(`Error getting metadata for ${url}: ${error.result.error}`);
+    // throw new Error(`Error getting metadata for ${url}: ${error.result.error}`);
+    return {
+      title: "",
+      site: "",
+      author: "",
+      date,
+      timestamp,
+      description: "",
+      url: url,
+      image: "",
+      type: "",
+      ...(notes && { notes }),
+      ...(tags && { tags: toArray(tags) }),
+      ...additionalProperties,
+    };
   }
 }
 
